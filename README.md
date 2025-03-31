@@ -1,13 +1,13 @@
-# Repository name
+# Caps
 
-> Description
+> E-commerce shop selling limited edition keyboards
 
 ## Running Locally
 
 1. Clone the repository
 
 ```sh
-git clone https://github.com/ldgni/repo-name.io
+git clone https://github.com/ldgni/caps.io
 ```
 
 2. Navigate inside the repository
