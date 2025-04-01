@@ -14,6 +14,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { useCart } from "@/app/cart-context";
+import { FAQ } from "@/components/faq";
 
 export default function HomePage() {
   const [quantity1, setQuantity1] = useState(1);
@@ -349,16 +350,14 @@ export default function HomePage() {
                 placeholder="Email address"
                 className="w-full flex-1 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]"
               />
-              <button className="border- w-full cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#4A3C3C] px-3 py-2 font-bold text-[#fbf8e3] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#5D4F4F,inset_0_-3px_0_0_#3C2D2D] transition-all active:translate-y-1 active:shadow-none lg:w-fit">
+              <button className="border- -mt-1 w-full cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#4A3C3C] px-3 py-2 font-bold text-[#fbf8e3] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#5D4F4F,inset_0_-3px_0_0_#3C2D2D] transition-all active:translate-y-1 active:shadow-none lg:w-fit">
                 Sign up
               </button>
             </div>
           </div>
         </section>
-        <section className="border-b-2 border-[#2e160e] p-4">
-          <h2 className="mb-6 text-2xl font-bold uppercase">
-            Frequently Asked Questions
-          </h2>
+        <section className="border-b-2 border-[#2e160e]">
+          <FAQ />
         </section>
       </div>
     </main>
