@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-y-scroll">
       <body
         className={`${geist.className} bg-[#f2e3d4] text-[#2e160e]`}
         style={{ "--header-height": "74px" } as React.CSSProperties}>
