@@ -74,7 +74,7 @@ export default function HomePage() {
       <div className="container mx-auto border-[#2e160e] sm:border-x-2">
         {/* First Product - VHS Keyboard */}
         <section className="border-b-2 border-[#2e160e]">
-          <div className="space-y-4 p-4 sm:p-6 lg:p-8">
+          <div className="space-y-4 p-6 sm:p-8">
             <div className="flex justify-center">
               <div className="flex items-center rounded-full bg-[#2e160e] px-3 py-2">
                 <Keyboard className="text-white" />
@@ -203,7 +203,7 @@ export default function HomePage() {
         </section>
         {/* Second Product - 8-Bit Keyboard */}
         <section className="border-b-2 border-[#2e160e]">
-          <div className="space-y-4 p-4 sm:p-6 lg:p-8">
+          <div className="space-y-4 p-6 sm:p-8">
             <div className="flex justify-center">
               <div className="flex items-center rounded-full bg-[#2e160e] px-3 py-2">
                 <Keyboard className="text-white" />
@@ -341,7 +341,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        <section className="border-b-2 border-[#2e160e] p-4 sm:p-6 lg:p-8">
+        <section className="border-b-2 border-[#2e160e] p-6 sm:p-8">
           <h2 className="mb-6 text-2xl font-bold uppercase">Newsletter</h2>
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
             <p className="text-xl font-medium">
@@ -361,7 +361,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        <section className="border-b-2 border-[#2e160e]">
+        <section>
           <FAQ />
         </section>
       </div>
