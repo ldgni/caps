@@ -70,10 +70,10 @@ export default function HomePage() {
 
   return (
     <main>
-      <div className="container mx-auto border-[#2e160e] md:border-x-2">
+      <div className="container mx-auto border-[#2e160e] sm:border-x-2">
         {/* First Product - VHS Keyboard */}
         <section className="border-b-2 border-[#2e160e]">
-          <div className="space-y-4 p-4 pb-8">
+          <div className="space-y-4 p-4">
             <div className="flex justify-center">
               <div className="flex items-center rounded-full bg-[#2e160e] px-3 py-2">
                 <Keyboard className="text-white" />
@@ -198,7 +198,7 @@ export default function HomePage() {
           </div>
         </section>
         {/* Second Product - 8-Bit Keyboard */}
-        <section>
+        <section className="border-b-2 border-[#2e160e]">
           <div className="space-y-4 p-4">
             <div className="flex justify-center">
               <div className="flex items-center rounded-full bg-[#2e160e] px-3 py-2">
@@ -334,6 +334,31 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+        </section>
+        <section className="border-b-2 border-[#2e160e] p-4">
+          <h2 className="mb-6 text-2xl font-bold uppercase">Newsletter</h2>
+          <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
+            <p className="text-xl font-medium">
+              Don&apos;t miss the launch of the next keyboard!
+            </p>
+            <div className="flex w-full flex-col items-start gap-3 lg:flex-row lg:items-center">
+              <input
+                type="email"
+                name=""
+                id=""
+                placeholder="Email address"
+                className="w-full flex-1 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]"
+              />
+              <button className="border- w-full cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#4A3C3C] px-3 py-2 font-bold text-[#fbf8e3] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#5D4F4F,inset_0_-3px_0_0_#3C2D2D] transition-all active:translate-y-1 active:shadow-none lg:w-fit">
+                Sign up
+              </button>
+            </div>
+          </div>
+        </section>
+        <section className="border-b-2 border-[#2e160e] p-4">
+          <h2 className="mb-6 text-2xl font-bold uppercase">
+            Frequently Asked Questions
+          </h2>
         </section>
       </div>
     </main>
