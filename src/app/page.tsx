@@ -1,6 +1,13 @@
 "use client";
 
-import { Keyboard, Minus, Plus, ShoppingCart } from "lucide-react";
+import {
+  Keyboard,
+  MapPinHouse,
+  Minus,
+  Package,
+  Plus,
+  ShoppingCart,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -127,11 +134,21 @@ export default function HomePage() {
                   delivers exceptional tactile feedback, durability, and style
                   that will make it the centerpiece of your desk setup.
                 </p>
+                <div className="flex flex-col gap-2 text-sm sm:flex-row">
+                  <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 font-semibold">
+                    <Package />
+                    Shipped within 24/48 hours
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 font-semibold">
+                    <MapPinHouse />
+                    Sent from Switzerland
+                  </span>
+                </div>
               </div>
               <div
                 id="product-1"
-                className="rounded-lg border-2 border-[#2e160e] p-6 lg:mt-0 lg:w-1/2">
-                <div className="flex flex-col gap-6">
+                className="flex items-center rounded-lg border-2 border-[#2e160e] p-6 lg:mt-0 lg:w-1/2">
+                <div className="flex w-full flex-col gap-6">
                   <div className="space-y-4">
                     <h3 className="text-2xl font-bold">Retro VHS Keyboard</h3>
                     <div className="text-2xl font-bold text-[#2e160e]">
@@ -248,11 +265,21 @@ export default function HomePage() {
                   isn&apos;t just a peripheral—it&apos;s a piece of computing
                   history reimagined for the modern desk.
                 </p>
+                <div className="flex flex-col gap-2 text-sm sm:flex-row">
+                  <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 font-semibold">
+                    <Package />
+                    Shipped within 24/48 hours
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 font-semibold">
+                    <MapPinHouse />
+                    Sent from Switzerland
+                  </span>
+                </div>
               </div>
               <div
                 id="product-2"
-                className="rounded-lg border-2 border-[#2e160e] p-6 lg:mt-0 lg:w-1/2">
-                <div className="flex flex-col gap-6">
+                className="flex items-center rounded-lg border-2 border-[#2e160e] p-6 lg:mt-0 lg:w-1/2">
+                <div className="flex w-full flex-col gap-6">
                   <div className="space-y-4">
                     <h3 className="text-2xl font-bold">
                       8-Bit Mechanical Keyboard
