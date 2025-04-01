@@ -108,33 +108,36 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
-              <div className="space-y-4 lg:w-1/2">
-                <h2 className="text-xl font-semibold uppercase">
-                  First keyboard
-                </h2>
-                <p className="text-gray-700">
-                  Our very first keyboard is a retro VHS keyboard. It is a
-                  mechanical keyboard with a unique design inspired by the
-                  classic VHS tapes. The keyboard features a vintage aesthetic
-                  with a modern twist, making it perfect for both retro
-                  enthusiasts and modern gamers alike.
-                </p>
-                <p className="text-gray-700">
-                  The design pays homage to the iconic VHS era with its color
-                  scheme and texture patterns. Each keyboard is meticulously
-                  crafted to deliver both performance and nostalgia.
-                </p>
-                <p className="text-gray-700">
-                  We&apos;ve combined cutting-edge keyboard technology with
-                  retro aesthetics to create a truly unique typing experience
-                  that stands out from conventional keyboards on the market.
-                </p>
-                <p className="text-gray-700">
-                  Whether you&apos;re a content creator, programmer, or just
-                  someone who appreciates fine keyboards, our Retro VHS Keyboard
-                  delivers exceptional tactile feedback, durability, and style
-                  that will make it the centerpiece of your desk setup.
-                </p>
+              <div className="flex flex-col justify-between space-y-4 lg:w-1/2">
+                <div className="space-y-4">
+                  <h2 className="text-xl font-semibold uppercase">
+                    First keyboard
+                  </h2>
+                  <p className="text-gray-700">
+                    Our very first keyboard is a retro VHS keyboard. It is a
+                    mechanical keyboard with a unique design inspired by the
+                    classic VHS tapes. The keyboard features a vintage aesthetic
+                    with a modern twist, making it perfect for both retro
+                    enthusiasts and modern gamers alike.
+                  </p>
+                  <p className="text-gray-700">
+                    The design pays homage to the iconic VHS era with its color
+                    scheme and texture patterns. Each keyboard is meticulously
+                    crafted to deliver both performance and nostalgia.
+                  </p>
+                  <p className="text-gray-700">
+                    We&apos;ve combined cutting-edge keyboard technology with
+                    retro aesthetics to create a truly unique typing experience
+                    that stands out from conventional keyboards on the market.
+                  </p>
+                  <p className="text-gray-700">
+                    Whether you&apos;re a content creator, programmer, or just
+                    someone who appreciates fine keyboards, our Retro VHS
+                    Keyboard delivers exceptional tactile feedback, durability,
+                    and style that will make it the centerpiece of your desk
+                    setup.
+                  </p>
+                </div>
                 <div className="flex flex-col gap-2 text-sm sm:flex-row">
                   <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 font-semibold">
                     <Package />
@@ -234,38 +237,40 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="flex flex-col gap-8 lg:flex-row-reverse lg:gap-12">
-              <div className="space-y-4 lg:w-1/2">
-                <h2 className="text-xl font-semibold uppercase">
-                  Second keyboard
-                </h2>
-                <p className="text-gray-700">
-                  Introducing our 8-Bit Mechanical Keyboard, a nostalgic tribute
-                  to the golden age of gaming. This keyboard combines the
-                  tactile satisfaction of modern mechanical switches with a
-                  design inspired by classic 8-bit gaming systems from the
-                  1980s.
-                </p>
-                <p className="text-gray-700">
-                  Each key press delivers that satisfying click reminiscent of
-                  the controllers and computers that defined an era of gaming
-                  history. The pixel-art inspired keycaps and vibrant color
-                  scheme instantly transport you back to the days of
-                  sprite-based graphics and chiptune soundtracks.
-                </p>
-                <p className="text-gray-700">
-                  We&apos;ve carefully balanced retro aesthetics with modern
-                  functionality, creating a keyboard that&apos;s not just a
-                  visual statement but a high-performance typing and gaming
-                  tool. The custom LED lighting can be programmed to display
-                  pixel-art patterns or react to your keystrokes.
-                </p>
-                <p className="text-gray-700">
-                  Perfect for gamers, developers with a fondness for retro
-                  computing, or anyone who appreciates the distinctive visual
-                  style of early digital culture. The 8-Bit Mechanical Keyboard
-                  isn&apos;t just a peripheral—it&apos;s a piece of computing
-                  history reimagined for the modern desk.
-                </p>
+              <div className="flex flex-col justify-between space-y-4 lg:w-1/2">
+                <div className="space-y-4">
+                  <h2 className="text-xl font-semibold uppercase">
+                    Second keyboard
+                  </h2>
+                  <p className="text-gray-700">
+                    Introducing our 8-Bit Mechanical Keyboard, a nostalgic
+                    tribute to the golden age of gaming. This keyboard combines
+                    the tactile satisfaction of modern mechanical switches with
+                    a design inspired by classic 8-bit gaming systems from the
+                    1980s.
+                  </p>
+                  <p className="text-gray-700">
+                    Each key press delivers that satisfying click reminiscent of
+                    the controllers and computers that defined an era of gaming
+                    history. The pixel-art inspired keycaps and vibrant color
+                    scheme instantly transport you back to the days of
+                    sprite-based graphics and chiptune soundtracks.
+                  </p>
+                  <p className="text-gray-700">
+                    We&apos;ve carefully balanced retro aesthetics with modern
+                    functionality, creating a keyboard that&apos;s not just a
+                    visual statement but a high-performance typing and gaming
+                    tool. The custom LED lighting can be programmed to display
+                    pixel-art patterns or react to your keystrokes.
+                  </p>
+                  <p className="text-gray-700">
+                    Perfect for gamers, developers with a fondness for retro
+                    computing, or anyone who appreciates the distinctive visual
+                    style of early digital culture. The 8-Bit Mechanical
+                    Keyboard isn&apos;t just a peripheral—it&apos;s a piece of
+                    computing history reimagined for the modern desk.
+                  </p>
+                </div>
                 <div className="flex flex-col gap-2 text-sm sm:flex-row">
                   <span className="inline-flex items-center gap-2 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 font-semibold">
                     <Package />
