@@ -13,7 +13,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       toastOptions={{
         classNames: {
           toast: "group border shadow-lg",
-          success: "!bg-[#e8d6c4] !border !text-[#2e160e]",
+          success: "!bg-[#e8d6c4] !border !border-[#2e160e] !text-[#2e160e]",
         },
       }}
       style={
