@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageSquareText, ShoppingCart, Store } from "lucide-react";
+import { ArrowBigUpDash, MessageSquareText, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 import { useCart } from "@/app/cart-context";
@@ -12,8 +12,10 @@ export default function Header() {
   return (
     <header className="border-b-2 border-[#2e160e]">
       <div className="container mx-auto flex items-center justify-between p-4">
-        <Link href="/" className="flex items-center gap-2 text-2xl font-bold">
-          <Store />
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-2xl font-bold transition-opacity hover:opacity-75">
+          <ArrowBigUpDash />
           Caps
         </Link>
         <nav>
