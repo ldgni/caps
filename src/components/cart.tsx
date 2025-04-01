@@ -51,7 +51,7 @@ export default function Cart() {
         onClick={toggleCart}
       />
       <div
-        className={`fixed inset-y-0 right-0 z-50 w-full max-w-md transform transition-transform duration-300 ${
+        className={`fixed inset-y-0 right-0 z-50 w-3/4 max-w-md transform transition-transform duration-300 sm:w-[350px] md:w-full ${
           isCartOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ top: `${cartTopPosition}px` }}>
