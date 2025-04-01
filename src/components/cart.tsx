@@ -45,7 +45,7 @@ export default function Cart() {
   return (
     <>
       <div
-        className={`fixed inset-0 z-40 bg-transparent ${
+        className={`fixed inset-0 z-40 ${
           isCartOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
         onClick={toggleCart}
@@ -56,7 +56,7 @@ export default function Cart() {
         }`}
         style={{ top: `${cartTopPosition}px` }}>
         <div
-          className="h-full overflow-y-auto border-l-2 border-[#2e160e] bg-[#e8d6c4] p-6 shadow-xl"
+          className="h-full overflow-y-auto border-l-2 border-[#2e160e] bg-[#efddcc] p-6 shadow-xl"
           onClick={(e) => e.stopPropagation()}>
           <div className="flex items-center justify-between pb-4">
             <h2 className="text-2xl font-bold">Cart</h2>
