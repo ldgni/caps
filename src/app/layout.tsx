@@ -5,6 +5,7 @@ import { Geist } from "next/font/google";
 
 import { CartProvider } from "@/app/cart-context";
 import Cart from "@/components/cart";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -21,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overflow-y-scroll">
+    <html lang="en" className="overflow-y-scroll scroll-smooth">
       <body
         className={`${geist.className} bg-[#f2e3d4] text-[#2e160e]`}
         style={{ "--header-height": "74px" } as React.CSSProperties}>
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Cart />
           {children}
           <Toaster />
+          <Footer />
         </CartProvider>
       </body>
     </html>
