@@ -9,7 +9,7 @@ import {
 
 export function FAQ() {
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-4 sm:p-6 lg:p-8">
       <h2 className="mb-2 text-3xl font-bold">Frequently Asked Questions</h2>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
