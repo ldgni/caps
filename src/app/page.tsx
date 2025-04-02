@@ -15,11 +15,21 @@ import { toast } from "sonner";
 
 import { useCart } from "@/app/cart-context";
 import { FAQ } from "@/components/faq";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function HomePage() {
   const [quantity1, setQuantity1] = useState(1);
   const [quantity2, setQuantity2] = useState(1);
   const { addToCart } = useCart();
+
+  const [email, setEmail] = useState("");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleDecreaseQuantity1 = () => {
     setQuantity1((prev) => (prev > 1 ? prev - 1 : 1));
@@ -67,6 +77,11 @@ export default function HomePage() {
     toast.success("Added to cart!", {
       description: `${quantity2} x 8-Bit Mechanical Keyboard — €${(119.99 * quantity2).toFixed(2)}`,
     });
+  };
+
+  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsDialogOpen(true);
   };
 
   return (
@@ -348,16 +363,25 @@ export default function HomePage() {
               Don&apos;t miss the launch of the next keyboard!
             </p>
             <div className="flex w-full flex-col items-start gap-3 lg:flex-row lg:items-center">
-              <input
-                type="email"
-                name=""
-                id=""
-                placeholder="Email address"
-                className="w-full flex-1 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]"
-              />
-              <button className="border- -mt-1 w-full cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#4A3C3C] px-3 py-2 font-bold text-[#fbf8e3] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#5D4F4F,inset_0_-3px_0_0_#3C2D2D] transition-all active:translate-y-1 active:shadow-none lg:w-fit">
-                Sign up
-              </button>
+              <form
+                className="flex w-full flex-col gap-3 lg:flex-row lg:items-center"
+                onSubmit={handleNewsletterSubmit}>
+                <input
+                  type="email"
+                  name="email"
+                  id="newsletter-email"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full flex-1 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]"
+                />
+                <button
+                  type="submit"
+                  className="border- -mt-1 w-full cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#4A3C3C] px-3 py-2 font-bold text-[#fbf8e3] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#5D4F4F,inset_0_-3px_0_0_#3C2D2D] transition-all active:translate-y-1 active:shadow-none lg:w-fit">
+                  Sign up
+                </button>
+              </form>
             </div>
           </div>
         </section>
@@ -365,6 +389,21 @@ export default function HomePage() {
           <FAQ />
         </section>
       </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="border-2 border-[#2e160e] bg-[#efddcc]">
+          <DialogHeader>
+            <DialogTitle className="text-xl text-[#2e160e]">
+              Thanks for signing up!
+            </DialogTitle>
+            <DialogDescription className="text-[#2e160e]/80">
+              We&apos;ve added {email} to our newsletter. You&apos;ll be the
+              first to hear about our new keyboard releases and exclusive
+              offers.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }
