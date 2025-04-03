@@ -82,6 +82,8 @@ export default function HomePage() {
   const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsDialogOpen(true);
+    // Clear the email input after successful submission
+    setEmail("");
   };
 
   return (
