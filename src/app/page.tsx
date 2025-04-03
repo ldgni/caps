@@ -166,8 +166,8 @@ export default function HomePage() {
               </div>
               <div
                 id="product-1"
-                className="flex items-center rounded-lg border-2 border-[#2e160e] p-6 lg:mt-0 lg:w-1/2">
-                <div className="flex w-full flex-col gap-6">
+                className="flex items-start rounded-lg border-2 border-[#2e160e] p-6 lg:mt-0 lg:w-1/2">
+                <div className="flex h-full w-full flex-col justify-between gap-6">
                   <div className="space-y-4">
                     <h3 className="text-2xl font-bold">Retro VHS Keyboard</h3>
                     <div className="text-2xl font-bold text-[#2e160e]">
@@ -175,11 +175,13 @@ export default function HomePage() {
                     </div>
                     <div className="border-t-2 border-dotted border-[#2e160e] pt-4">
                       <ul className="list-inside list-disc space-y-2 text-gray-700">
+                        <li>Retro cassette-inspired keycap design</li>
+                        <li>
+                          Custom switches with a satisfying &quot;click&quot;
+                        </li>
+                        <li>RGB backlighting with retro wave patterns</li>
                         <li>Durable aluminum frame with vintage finish</li>
-                        <li>ANSI/ISO layout options available</li>
-                        <li>Hot-swappable MX compatible switches</li>
-                        <li>Double-shot PBT keycaps with retro colors</li>
-                        <li>USB-C detachable cable with coiled design</li>
+                        <li>Programmable macros for creative workflows</li>
                       </ul>
                     </div>
                   </div>
@@ -299,8 +301,8 @@ export default function HomePage() {
               </div>
               <div
                 id="product-2"
-                className="flex items-center rounded-lg border-2 border-[#2e160e] p-6 lg:mt-0 lg:w-1/2">
-                <div className="flex w-full flex-col gap-6">
+                className="flex items-start rounded-lg border-2 border-[#2e160e] p-6 lg:mt-0 lg:w-1/2">
+                <div className="flex h-full w-full flex-col justify-between gap-6">
                   <div className="space-y-4">
                     <h3 className="text-2xl font-bold">
                       8-Bit Mechanical Keyboard
