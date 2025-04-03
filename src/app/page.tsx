@@ -29,6 +29,7 @@ export default function HomePage() {
   const { addToCart } = useCart();
 
   const [email, setEmail] = useState("");
+  const [submittedEmail, setSubmittedEmail] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleDecreaseQuantity1 = () => {
@@ -81,6 +82,7 @@ export default function HomePage() {
 
   const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmittedEmail(email); // Store the submitted email before clearing
     setIsDialogOpen(true);
     // Clear the email input after successful submission
     setEmail("");
@@ -401,8 +403,8 @@ export default function HomePage() {
               Thanks for signing up!
             </DialogTitle>
             <DialogDescription className="text-[#2e160e]/80">
-              We&apos;ve added {email} to our newsletter. You&apos;ll be the
-              first to hear about our new keyboard releases and exclusive
+              We&apos;ve added {submittedEmail} to our newsletter. You&apos;ll
+              be the first to hear about our new keyboard releases and exclusive
               offers.
             </DialogDescription>
           </DialogHeader>
