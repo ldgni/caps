@@ -363,32 +363,50 @@ export default function HomePage() {
           </div>
         </section>
         <section className="border-b-2 border-[#2e160e] p-6 sm:p-8">
-          <h2 className="mb-6 text-2xl font-bold uppercase">Newsletter</h2>
-          <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2">
-            <p className="text-xl font-medium">
-              Don&apos;t miss the launch of the next keyboard!
-            </p>
-            <div className="flex w-full flex-col items-start gap-3 lg:flex-row lg:items-center">
-              <form
-                className="flex w-full flex-col gap-3 lg:flex-row lg:items-center"
-                onSubmit={handleNewsletterSubmit}>
+          <div className="flex flex-col gap-8 rounded-lg border-2 border-[#2e160e] bg-[#f9f2eb] p-6 sm:p-8">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold uppercase md:text-3xl">
+                  Newsletter
+                </h2>
+                <p className="text-lg font-medium text-gray-700 md:text-xl">
+                  Don&apos;t miss the launch of the next keyboard!
+                </p>
+              </div>
+
+              <div className="hidden shrink-0 md:block">
+                <div className="flex h-32 w-32 items-center justify-center rounded-full border-4 border-[#2e160e] bg-[#ebd5bf]">
+                  <Keyboard className="h-16 w-16 text-[#2e160e]" />
+                </div>
+              </div>
+            </div>
+
+            <form
+              onSubmit={handleNewsletterSubmit}
+              className="flex flex-col gap-3 sm:flex-row sm:items-end">
+              <div className="flex-1 space-y-2">
+                <label
+                  htmlFor="newsletter-email"
+                  className="font-medium text-[#2e160e]">
+                  Email address
+                </label>
                 <input
                   type="email"
                   name="email"
                   id="newsletter-email"
-                  placeholder="Email address"
+                  placeholder="youremail@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full flex-1 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]"
+                  className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-4 py-3 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
                 />
-                <button
-                  type="submit"
-                  className="border- -mt-1 w-full cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#4A3C3C] px-3 py-2 font-bold text-[#fbf8e3] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#5D4F4F,inset_0_-3px_0_0_#3C2D2D] transition-all active:translate-y-1 active:shadow-none lg:w-fit">
-                  Sign up
-                </button>
-              </form>
-            </div>
+              </div>
+              <button
+                type="submit"
+                className="cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#4A3C3C] px-6 py-3 font-bold text-[#fbf8e3] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#5D4F4F,inset_0_-3px_0_0_#3C2D2D] transition-all active:translate-y-1 active:shadow-none">
+                Subscribe Now
+              </button>
+            </form>
           </div>
         </section>
         <section>
