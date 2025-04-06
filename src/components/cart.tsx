@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useCart } from "@/app/cart-context";
@@ -97,9 +98,13 @@ export default function Cart() {
                     <span>Total:</span>
                     <span>€{total.toFixed(2)}</span>
                   </div>
-                  <button className="mt-4 w-full cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#ffc808] px-4 py-2 font-bold text-[#2e160e] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#FFD337,inset_0_-3px_0_0_#CFA205] transition-all active:translate-y-1 active:shadow-none">
-                    Checkout
-                  </button>
+                  <Link href="/checkout">
+                    <button
+                      onClick={toggleCart}
+                      className="mt-4 w-full cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#ffc808] px-4 py-2 font-bold text-[#2e160e] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#FFD337,inset_0_-3px_0_0_#CFA205] transition-all active:translate-y-1 active:shadow-none">
+                      Checkout
+                    </button>
+                  </Link>
                 </div>
               </>
             )}
