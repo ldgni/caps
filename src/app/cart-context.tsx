@@ -8,23 +8,26 @@ import {
   useState,
 } from "react";
 
-type CartItem = {
+export interface CartItem {
   id: string;
   name: string;
   price: number;
   quantity: number;
-};
+}
 
-type CartContextType = {
+interface CartContextType {
   items: CartItem[];
   addToCart: (item: CartItem) => void;
   updateQuantity: (id: string, quantity: number) => void;
   removeFromCart: (id: string) => void;
   isCartOpen: boolean;
   toggleCart: () => void;
-};
+  clearCart: () => void;
+}
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
+
+const CART_STORAGE_KEY = "caps-cart-items";
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -33,21 +36,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Load cart from localStorage on component mount
   useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      try {
-        setItems(JSON.parse(storedCart));
-      } catch (error) {
-        console.error("Failed to parse cart data from localStorage", error);
+    // Only run on client-side to avoid SSR issues
+    if (typeof window !== "undefined") {
+      const storedCart = localStorage.getItem(CART_STORAGE_KEY);
+      if (storedCart) {
+        try {
+          setItems(JSON.parse(storedCart));
+        } catch (error) {
+          console.error("Failed to parse cart data from localStorage", error);
+          // Reset to empty cart if data is corrupted
+          localStorage.removeItem(CART_STORAGE_KEY);
+        }
       }
+      setIsInitialized(true);
     }
-    setIsInitialized(true);
   }, []);
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
-    if (isInitialized) {
-      localStorage.setItem("cart", JSON.stringify(items));
+    if (isInitialized && typeof window !== "undefined") {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
     }
   }, [items, isInitialized]);
 
@@ -66,6 +74,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const updateQuantity = (id: string, quantity: number) => {
+    if (quantity <= 0) {
+      removeFromCart(id);
+      return;
+    }
+
     setItems((prevItems) =>
       prevItems.map((item) => (item.id === id ? { ...item, quantity } : item)),
     );
@@ -75,23 +88,25 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
+  const clearCart = () => {
+    setItems([]);
+  };
+
   const toggleCart = () => {
     setIsCartOpen((prev) => !prev);
   };
 
-  return (
-    <CartContext.Provider
-      value={{
-        items,
-        addToCart,
-        updateQuantity,
-        removeFromCart,
-        isCartOpen,
-        toggleCart,
-      }}>
-      {children}
-    </CartContext.Provider>
-  );
+  const value: CartContextType = {
+    items,
+    addToCart,
+    updateQuantity,
+    removeFromCart,
+    isCartOpen,
+    toggleCart,
+    clearCart,
+  };
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
 export function useCart() {

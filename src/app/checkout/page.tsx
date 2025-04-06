@@ -8,18 +8,20 @@ import {
   TruckIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 
 import { useCart } from "@/app/cart-context";
+import { formatPrice, generateOrderId } from "@/lib/utils";
 
 export default function CheckoutPage() {
-  const { items, removeFromCart } = useCart();
+  const { items, clearCart } = useCart();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [step, setStep] = useState<"shipping" | "payment" | "confirmation">(
     "shipping",
   );
+  const [orderId, setOrderId] = useState("");
 
   // Form state
   const [shippingInfo, setShippingInfo] = useState({
@@ -54,18 +56,47 @@ export default function CheckoutPage() {
 
   const handlePaymentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setPaymentInfo((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "cardNumber") {
+      // Format card number with spaces after every 4 digits
+      const cleaned = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
+      const formatted = cleaned.match(/.{1,4}/g)?.join(" ") || cleaned;
+      setPaymentInfo((prev) => ({
+        ...prev,
+        [name]: formatted.substring(0, 19),
+      }));
+    } else if (name === "expiryDate") {
+      // Format expiry date as MM/YY
+      const cleaned = value.replace(/[^0-9]/gi, "");
+      if (cleaned.length <= 2) {
+        setPaymentInfo((prev) => ({ ...prev, [name]: cleaned }));
+      } else {
+        const month = cleaned.substring(0, 2);
+        const year = cleaned.substring(2, 4);
+        setPaymentInfo((prev) => ({ ...prev, [name]: `${month}/${year}` }));
+      }
+    } else if (name === "cvv") {
+      // Limit CVV to 3 or 4 digits
+      const cleaned = value.replace(/[^0-9]/gi, "").substring(0, 4);
+      setPaymentInfo((prev) => ({ ...prev, [name]: cleaned }));
+    } else {
+      setPaymentInfo((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
-  const handleShippingSubmit = (e: React.FormEvent) => {
+  const handleShippingSubmit = (e: FormEvent) => {
     e.preventDefault();
     setStep("payment");
     window.scrollTo(0, 0);
   };
 
-  const handlePaymentSubmit = (e: React.FormEvent) => {
+  const handlePaymentSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Generate order ID
+    const newOrderId = generateOrderId();
+    setOrderId(newOrderId);
 
     // Simulate payment processing
     setTimeout(() => {
@@ -77,8 +108,10 @@ export default function CheckoutPage() {
 
   const handlePlaceOrder = () => {
     // Clear cart and redirect to home
-    items.forEach((item) => removeFromCart(item.id));
-    toast.success("Order placed successfully!");
+    clearCart();
+    toast.success("Order placed successfully!", {
+      description: `Order #${orderId} has been confirmed. Thank you for shopping with us!`,
+    });
     router.push("/");
   };
 
@@ -92,7 +125,7 @@ export default function CheckoutPage() {
           </p>
           <button
             onClick={() => router.push("/")}
-            className="cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#2e160e] px-6 py-3 font-bold text-white transition-colors hover:bg-[#3d1c11]">
+            className="cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#2e160e] px-6 py-3 font-bold text-white shadow-[0_4px_0_0_#000000,inset_0_3px_0_0_#3d1c11] transition-all hover:bg-[#3d1c11] active:translate-y-1 active:shadow-none">
             Back to Shop
           </button>
         </div>
@@ -308,6 +341,7 @@ export default function CheckoutPage() {
                       placeholder="1234 5678 9012 3456"
                       required
                       className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-4 py-2 outline-none"
+                      maxLength={19}
                     />
                   </div>
 
@@ -327,6 +361,7 @@ export default function CheckoutPage() {
                         placeholder="MM/YY"
                         required
                         className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-4 py-2 outline-none"
+                        maxLength={5}
                       />
                     </div>
                     <div className="space-y-2">
@@ -344,6 +379,7 @@ export default function CheckoutPage() {
                         placeholder="123"
                         required
                         className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-4 py-2 outline-none"
+                        maxLength={4}
                       />
                     </div>
                   </div>
@@ -377,17 +413,15 @@ export default function CheckoutPage() {
                   </p>
                   <div className="my-4 w-full max-w-md rounded-lg border-2 border-[#2e160e] bg-[#f9f2eb] p-4">
                     <p className="font-medium">Order Details:</p>
-                    <p className="text-sm text-gray-700">
-                      Order #:{" "}
-                      {Math.floor(Math.random() * 1000000)
-                        .toString()
-                        .padStart(6, "0")}
-                    </p>
+                    <p className="text-sm text-gray-700">Order #: {orderId}</p>
                     <p className="text-sm text-gray-700">
                       Date: {new Date().toLocaleDateString("en-GB")}
                     </p>
                     <p className="text-sm text-gray-700">
                       Email: {shippingInfo.email}
+                    </p>
+                    <p className="mt-2 text-sm text-gray-700">
+                      Total: {formatPrice(total)}
                     </p>
                   </div>
                   <div className="flex items-center gap-2 text-gray-700">
@@ -396,7 +430,7 @@ export default function CheckoutPage() {
                   </div>
                   <button
                     onClick={handlePlaceOrder}
-                    className="mt-4 cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#2e160e] px-6 py-3 font-bold text-white transition-colors hover:bg-[#3d1c11]">
+                    className="mt-4 cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#2e160e] px-6 py-3 font-bold text-white shadow-[0_4px_0_0_#000000,inset_0_3px_0_0_#3d1c11] transition-all hover:bg-[#3d1c11] active:translate-y-1 active:shadow-none">
                     Return to Shop
                   </button>
                 </div>
@@ -423,7 +457,7 @@ export default function CheckoutPage() {
                         </p>
                       </div>
                       <p className="font-medium">
-                        €{(item.price * item.quantity).toFixed(2)}
+                        {formatPrice(item.price * item.quantity)}
                       </p>
                     </div>
                   ))}
@@ -432,15 +466,15 @@ export default function CheckoutPage() {
                 <div className="mt-4 space-y-2 border-t-2 border-dotted border-[#2e160e] pt-4">
                   <div className="flex justify-between">
                     <p>Subtotal</p>
-                    <p className="font-medium">€{subtotal.toFixed(2)}</p>
+                    <p className="font-medium">{formatPrice(subtotal)}</p>
                   </div>
                   <div className="flex justify-between">
                     <p>Shipping</p>
-                    <p className="font-medium">€{shipping.toFixed(2)}</p>
+                    <p className="font-medium">{formatPrice(shipping)}</p>
                   </div>
                   <div className="flex justify-between border-t-2 border-dotted border-[#2e160e] pt-2">
                     <p className="font-bold">Total</p>
-                    <p className="font-bold">€{total.toFixed(2)}</p>
+                    <p className="font-bold">{formatPrice(total)}</p>
                   </div>
                 </div>
               </div>

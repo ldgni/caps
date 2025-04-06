@@ -22,6 +22,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { formatPrice } from "@/lib/utils";
 
 export default function HomePage() {
   const [quantity1, setQuantity1] = useState(1);
@@ -60,7 +61,7 @@ export default function HomePage() {
 
     // Show toast notification with product details
     toast.success("Added to cart!", {
-      description: `${quantity1} x Retro VHS Keyboard — €${(99.99 * quantity1).toFixed(2)}`,
+      description: `${quantity1} x Retro VHS Keyboard — ${formatPrice(99.99 * quantity1)}`,
     });
   };
 
@@ -76,7 +77,7 @@ export default function HomePage() {
 
     // Show toast notification with product details
     toast.success("Added to cart!", {
-      description: `${quantity2} x 8-Bit Mechanical Keyboard — €${(119.99 * quantity2).toFixed(2)}`,
+      description: `${quantity2} x 8-Bit Mechanical Keyboard — ${formatPrice(119.99 * quantity2)}`,
     });
   };
 
@@ -175,7 +176,7 @@ export default function HomePage() {
                   <div className="space-y-4">
                     <h3 className="text-2xl font-bold">Retro VHS Keyboard</h3>
                     <div className="text-2xl font-bold text-[#2e160e]">
-                      99,99€
+                      {formatPrice(99.99)}
                     </div>
                     <div className="border-t-2 border-dotted border-[#2e160e] pt-4">
                       <ul className="list-inside list-disc space-y-2 text-gray-700">
@@ -312,7 +313,7 @@ export default function HomePage() {
                       8-Bit Mechanical Keyboard
                     </h3>
                     <div className="text-2xl font-bold text-[#2e160e]">
-                      119,99€
+                      {formatPrice(119.99)}
                     </div>
                     <div className="border-t-2 border-dotted border-[#2e160e] pt-4">
                       <ul className="list-inside list-disc space-y-2 text-gray-700">
