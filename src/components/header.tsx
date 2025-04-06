@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="border-b-2 border-[#2e160e]">
-      <div className="container mx-auto flex items-center justify-between p-4">
+      <div className="container mx-auto flex items-center justify-between p-6 sm:p-8">
         <Link
           href="/"
           className="flex items-center gap-2 text-2xl font-bold transition-opacity hover:opacity-75">
