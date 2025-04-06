@@ -363,28 +363,20 @@ export default function HomePage() {
           </div>
         </section>
         <section className="border-b-2 border-[#2e160e] p-6 sm:p-8">
-          <div className="flex flex-col gap-8 rounded-lg border-2 border-[#2e160e] bg-[#f9f2eb] p-6 sm:p-8">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div className="space-y-4">
-                <h2 className="text-2xl font-bold uppercase md:text-3xl">
-                  Newsletter
-                </h2>
-                <p className="text-lg font-medium text-gray-700 md:text-xl">
-                  Don&apos;t miss the launch of the next keyboard!
-                </p>
-              </div>
-
-              <div className="hidden shrink-0 md:block">
-                <div className="flex h-32 w-32 items-center justify-center rounded-full border-4 border-[#2e160e] bg-[#ebd5bf]">
-                  <Keyboard className="h-16 w-16 text-[#2e160e]" />
-                </div>
-              </div>
+          <div className="flex flex-col gap-4 rounded-lg border-2 border-[#2e160e] bg-[#f9f2eb] p-4 sm:p-6">
+            <div>
+              <h2 className="text-xl font-bold uppercase md:text-2xl">
+                Newsletter
+              </h2>
+              <p className="text-base font-medium text-gray-700">
+                Don&apos;t miss the launch of the next keyboard!
+              </p>
             </div>
 
             <form
               onSubmit={handleNewsletterSubmit}
               className="flex flex-col gap-3 sm:flex-row sm:items-end">
-              <div className="flex-1 space-y-2">
+              <div className="flex-1 space-y-1">
                 <label
                   htmlFor="newsletter-email"
                   className="font-medium text-[#2e160e]">
@@ -398,7 +390,7 @@ export default function HomePage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-4 py-3 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
+                  className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-4 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
                 />
               </div>
               <button
