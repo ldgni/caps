@@ -1,9 +1,12 @@
 "use client";
 
-import { ArrowBigUpDash, MessageSquareText, ShoppingCart } from "lucide-react";
+import { MessageSquareText, ShoppingCart } from "lucide-react";
+import { Doto } from "next/font/google";
 import Link from "next/link";
 
 import { useCart } from "@/app/cart-context";
+
+const doto = Doto({ subsets: ["latin"], display: "swap" });
 
 export default function Header() {
   const { toggleCart, items } = useCart();
@@ -14,8 +17,7 @@ export default function Header() {
       <div className="container mx-auto flex items-center justify-between p-6 sm:p-8">
         <Link
           href="/"
-          className="flex items-center gap-2 text-2xl font-bold transition-opacity hover:opacity-75">
-          <ArrowBigUpDash />
+          className={`flex items-center gap-2 text-2xl font-bold transition-opacity hover:opacity-75 ${doto.className}`}>
           Caps
         </Link>
         <nav>
