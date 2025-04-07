@@ -12,7 +12,9 @@ export function FAQ() {
     <section className="w-full p-6 sm:p-8">
       <h2 className="mb-2 text-3xl font-bold">Frequently Asked Questions</h2>
       <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="item-1">
+        <AccordionItem
+          value="item-1"
+          className="border-b border-[#2e160e] py-2">
           <AccordionTrigger className="text-lg">What is Caps?</AccordionTrigger>
           <AccordionContent className="text-base">
             Caps is a premium keyboard company specializing in custom,
@@ -23,7 +25,9 @@ export function FAQ() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-2">
+        <AccordionItem
+          value="item-2"
+          className="border-b border-[#2e160e] py-2">
           <AccordionTrigger className="text-lg">
             Why would I buy from Caps?
           </AccordionTrigger>
@@ -37,7 +41,9 @@ export function FAQ() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-3">
+        <AccordionItem
+          value="item-3"
+          className="border-b border-[#2e160e] py-2">
           <AccordionTrigger className="text-lg">
             What&apos;s inside a Caps package?
           </AccordionTrigger>
@@ -50,7 +56,9 @@ export function FAQ() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-4">
+        <AccordionItem
+          value="item-4"
+          className="border-b border-[#2e160e] py-2">
           <AccordionTrigger className="text-lg">
             What materials are used to build Caps keyboards?
           </AccordionTrigger>
@@ -65,7 +73,9 @@ export function FAQ() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-5">
+        <AccordionItem
+          value="item-5"
+          className="border-b border-[#2e160e] py-2">
           <AccordionTrigger className="text-lg">
             How long will my Caps keyboard last?
           </AccordionTrigger>
@@ -79,7 +89,9 @@ export function FAQ() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-6">
+        <AccordionItem
+          value="item-6"
+          className="border-b border-[#2e160e] py-2">
           <AccordionTrigger className="text-lg">
             Do you offer customization options?
           </AccordionTrigger>
