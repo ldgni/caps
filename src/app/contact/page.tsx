@@ -69,7 +69,7 @@ export default function ContactPage() {
                   alt="A phone"
                   width={1920}
                   height={1080}
-                  className="object-cover"
+                  className="h-full w-full object-cover"
                   priority
                 />
               </div>
