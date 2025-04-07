@@ -43,23 +43,16 @@ export function Newsletter() {
         <form
           onSubmit={handleNewsletterSubmit}
           className="flex flex-col gap-3 sm:flex-row sm:items-end">
-          <div className="flex-1 space-y-1">
-            <label
-              htmlFor="newsletter-email"
-              className="font-medium text-[#2e160e]">
-              Email address
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="newsletter-email"
-              placeholder="youremail@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-4 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
-            />
-          </div>
+          <input
+            type="email"
+            name="email"
+            id="newsletter-email"
+            placeholder="youremail@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full max-w-xl flex-1 rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-4 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
+          />
           <button
             type="submit"
             className="cursor-pointer rounded-lg border-2 border-[#2e160e] bg-[#4A3C3C] px-6 py-3 font-bold text-[#fbf8e3] shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#5D4F4F,inset_0_-3px_0_0_#3C2D2D] transition-all active:translate-y-1 active:shadow-none">
