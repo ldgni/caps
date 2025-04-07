@@ -59,7 +59,7 @@ export default function ContactPage() {
   return (
     <main>
       <div className="container mx-auto border-[#2e160e] sm:border-x-2">
-        <section className="flex flex-col border-[#2e160e] sm:border-b-2 lg:flex-row">
+        <section className="flex flex-col lg:flex-row">
           {/* Image Section - Hidden on small screens, shown on left on large screens */}
           <div className="hidden border-[#2e160e] lg:flex lg:w-1/2 lg:border-r-2">
             <div className="flex h-full w-full items-center justify-center p-4">
