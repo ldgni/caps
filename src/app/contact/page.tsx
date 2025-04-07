@@ -1,6 +1,7 @@
 "use client";
 
-import { Keyboard, MessageSquare, SendHorizontal } from "lucide-react";
+import { MessageSquare, SendHorizontal } from "lucide-react";
+import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 
@@ -58,21 +59,18 @@ export default function ContactPage() {
   return (
     <main>
       <div className="container mx-auto border-[#2e160e] sm:border-x-2">
-        <section className="flex flex-col border-b-2 border-[#2e160e] lg:flex-row">
+        <section className="flex flex-col border-[#2e160e] sm:border-b-2 lg:flex-row">
           {/* Image Section - Hidden on small screens, shown on left on large screens */}
-          <div className="hidden border-[#2e160e] p-6 sm:p-8 lg:flex lg:w-1/2 lg:border-r-2">
-            <div className="flex h-full w-full flex-col items-center justify-center space-y-6">
-              <div className="rounded-full border-4 border-[#2e160e] bg-[#ebd5bf] p-12">
-                <Keyboard className="h-32 w-32 text-[#2e160e]" />
-              </div>
-              <div className="space-y-4 text-center">
-                <h2 className="text-3xl font-bold">Get in Touch</h2>
-                <p className="text-xl">We&apos;d love to hear from you!</p>
-                <p className="max-w-md">
-                  Have questions about our products, delivery times, or custom
-                  keyboard options? Our team is ready to assist you with any
-                  inquiries you might have.
-                </p>
+          <div className="hidden border-[#2e160e] lg:flex lg:w-1/2 lg:border-r-2">
+            <div className="flex h-full w-full items-center justify-center p-4">
+              <div className="relative h-5/6 w-5/6 overflow-hidden rounded-lg border-2 border-[#2e160e] shadow-lg">
+                <Image
+                  src="/images/phone-contact.jpg"
+                  alt="A phone"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
           </div>
