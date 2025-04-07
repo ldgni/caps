@@ -27,33 +27,25 @@ export default function HomePage() {
     fetchProducts();
   }, []);
 
-  if (isLoading) {
-    return (
-      <div className="container mx-auto py-20 text-center">
-        <Spinner size="large" className="mx-auto" />
-      </div>
-    );
-  }
-
   return (
     <main>
       <div className="container mx-auto border-[#2e160e] sm:border-x-2">
         {/* Products Section */}
-        {products.map((product, index) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            reversed={index % 2 !== 0}
-          />
-        ))}
-
-        {/* Newsletter Section */}
+        {isLoading ? (
+          <div className="py-16 text-center">
+            <Spinner size="large" className="mx-auto" />
+          </div>
+        ) : (
+          products.map((product, index) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              reversed={index % 2 !== 0}
+            />
+          ))
+        )}
         <Newsletter />
-
-        {/* FAQ Section */}
-        <section>
-          <FAQ />
-        </section>
+        <FAQ />
       </div>
     </main>
   );
