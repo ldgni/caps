@@ -67,7 +67,8 @@ export default function ContactPage() {
                 <Image
                   src="/images/phone-contact.jpg"
                   alt="A phone"
-                  fill
+                  width={1920}
+                  height={1080}
                   className="object-cover"
                   priority
                 />
