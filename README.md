@@ -1,6 +1,6 @@
 # Caps
 
-> E-commerce shop selling limited edition keyboards
+> E-commerce shop selling keyboards
 
 ## Running Locally
 
