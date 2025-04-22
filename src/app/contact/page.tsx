@@ -5,14 +5,6 @@ import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -21,7 +13,6 @@ export default function ContactPage() {
     orderId: "",
     message: "",
   });
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -38,9 +29,6 @@ export default function ContactPage() {
     // Here you would normally send the form data to your backend
     console.log("Form submitted:", formData);
 
-    // Show success dialog
-    setIsDialogOpen(true);
-
     // Clear the form after submission
     setFormData({
       firstName: "",
@@ -50,9 +38,11 @@ export default function ContactPage() {
       message: "",
     });
 
-    // Show toast notification
-    toast.success("Message sent!", {
-      description: "We'll get back to you as soon as possible.",
+    // Show toast notification with more detailed information
+    toast.success("Thanks for your message!", {
+      description:
+        "We've received your inquiry and will get back to you as soon as possible.",
+      duration: 5000,
     });
   };
 
@@ -192,20 +182,6 @@ export default function ContactPage() {
           </div>
         </section>
       </div>
-
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="border-2 border-[#2e160e] bg-[#efddcc]">
-          <DialogHeader>
-            <DialogTitle className="text-xl text-[#2e160e]">
-              Thanks for your message!
-            </DialogTitle>
-            <DialogDescription className="text-[#2e160e]/80">
-              We&apos;ve received your inquiry and will get back to you as soon
-              as possible. Your message is important to us!
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </main>
   );
 }

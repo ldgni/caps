@@ -1,19 +1,10 @@
 "use client";
 
 import { useState } from "react";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 export function Newsletter() {
   const [email, setEmail] = useState("");
-  const [submittedEmail, setSubmittedEmail] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleNewsletterSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
@@ -23,8 +14,13 @@ export function Newsletter() {
     // In the future, this could be connected to a backend API
     // Example: await fetch("/api/newsletter", { method: "POST", body: JSON.stringify({ email }) });
 
-    setSubmittedEmail(email);
-    setIsDialogOpen(true);
+    const submittedEmail = email;
+    // Show toast notification
+    toast.success("Thanks for signing up!", {
+      description: `We've added ${submittedEmail} to our newsletter.`,
+      duration: 5000,
+    });
+
     setEmail("");
   };
 
@@ -60,21 +56,6 @@ export function Newsletter() {
           </button>
         </form>
       </div>
-
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="border-2 border-[#2e160e] bg-[#efddcc]">
-          <DialogHeader>
-            <DialogTitle className="text-xl text-[#2e160e]">
-              Thanks for signing up!
-            </DialogTitle>
-            <DialogDescription className="text-[#2e160e]/80">
-              We&apos;ve added {submittedEmail} to our newsletter. You&apos;ll
-              be the first to hear about our new keyboard releases and exclusive
-              offers.
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }
