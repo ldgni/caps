@@ -26,14 +26,23 @@ export function Newsletter() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        // Show success toast notification
-        toast.success("Newsletter Subscription", {
-          description: data.message,
-          duration: 5000,
-        });
+        // Check if the message indicates already subscribed
+        if (data.message.includes("already subscribed")) {
+          // Show info toast for already subscribed emails
+          toast.error("Newsletter", {
+            description: data.message,
+            duration: 5000,
+          });
+        } else {
+          // Show success toast notification for new subscriptions
+          toast.success("Newsletter", {
+            description: data.message,
+            duration: 5000,
+          });
 
-        // Clear the form on success
-        setEmail("");
+          // Clear the form on success
+          setEmail("");
+        }
       } else {
         // Show error toast
         toast.error("Subscription Failed", {

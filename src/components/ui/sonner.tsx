@@ -14,6 +14,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
         classNames: {
           toast: "group border shadow-lg",
           success: "!bg-[#e8d6c4] !border !border-[#2e160e] !text-[#2e160e]",
+          error: "!bg-[#e8d6c4] !border !border-[#2e160e] !text-[#2e160e]",
           description: "!text-[#2e160e] group-[.sonner-toast]:!text-[#2e160e]",
         },
       }}
