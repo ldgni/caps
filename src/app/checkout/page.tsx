@@ -22,6 +22,7 @@ export default function CheckoutPage() {
     "shipping",
   );
   const [orderId, setOrderId] = useState("");
+  const [orderError, setOrderError] = useState("");
 
   // Form state
   const [shippingInfo, setShippingInfo] = useState({
@@ -90,20 +91,54 @@ export default function CheckoutPage() {
     window.scrollTo(0, 0);
   };
 
-  const handlePaymentSubmit = (e: FormEvent) => {
+  const handlePaymentSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setOrderError("");
 
-    // Generate order ID
-    const newOrderId = generateOrderId();
-    setOrderId(newOrderId);
+    try {
+      // Generate order ID
+      const newOrderId = generateOrderId();
+      setOrderId(newOrderId);
 
-    // Simulate payment processing
-    setTimeout(() => {
+      // Prepare order data for submission
+      const orderData = {
+        orderId: newOrderId,
+        shippingInfo: shippingInfo,
+        items: items,
+        subtotal: subtotal,
+        shippingCost: shipping,
+        total: total,
+      };
+
+      // Submit order to API
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Failed to process order");
+      }
+
+      // Order created successfully
       setIsSubmitting(false);
       setStep("confirmation");
       window.scrollTo(0, 0);
-    }, 1500);
+    } catch (error) {
+      setIsSubmitting(false);
+      const errorMessage =
+        error instanceof Error ? error.message : "An unexpected error occurred";
+      setOrderError(errorMessage);
+      toast.error("Order processing failed", {
+        description: errorMessage,
+      });
+    }
   };
 
   const handlePlaceOrder = () => {
@@ -383,6 +418,12 @@ export default function CheckoutPage() {
                       />
                     </div>
                   </div>
+
+                  {orderError && (
+                    <div className="mt-2 rounded-md bg-red-50 p-3 text-sm text-red-500">
+                      {orderError}
+                    </div>
+                  )}
 
                   <div className="flex space-x-4 pt-4">
                     <button
