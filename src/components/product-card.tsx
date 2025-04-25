@@ -14,7 +14,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { useCart } from "@/app/cart-context";
-import { Product } from "@/lib/services/product-service";
+import { Product } from "@/app/page";
 import { formatPrice } from "@/lib/utils";
 
 interface ProductCardProps {
