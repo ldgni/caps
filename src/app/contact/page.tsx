@@ -13,6 +13,7 @@ export default function ContactPage() {
     orderId: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -24,26 +25,55 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Here you would normally send the form data to your backend
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
 
-    // Clear the form after submission
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      orderId: "",
-      message: "",
-    });
+    try {
+      // Submit to the API endpoint
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Show toast notification with more detailed information
-    toast.success("Thanks for your message!", {
-      description:
-        "We've received your inquiry and will get back to you as soon as possible.",
-      duration: 5000,
-    });
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Show success toast notification
+        toast.success("Message sent!", {
+          description: data.message,
+          duration: 5000,
+        });
+
+        // Clear the form on success
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          orderId: "",
+          message: "",
+        });
+      } else {
+        // Show error toast
+        toast.error("Message Failed", {
+          description:
+            data.message || "Something went wrong. Please try again.",
+          duration: 5000,
+        });
+      }
+    } catch (error) {
+      console.error("Contact form submission error:", error);
+      toast.error("Message Failed", {
+        description:
+          "Network error. Please check your connection and try again.",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -97,6 +127,7 @@ export default function ContactPage() {
                     required
                     value={formData.firstName}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
                   />
                 </div>
@@ -114,6 +145,7 @@ export default function ContactPage() {
                     required
                     value={formData.lastName}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
                   />
                 </div>
@@ -131,6 +163,7 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
                   />
                 </div>
@@ -147,6 +180,7 @@ export default function ContactPage() {
                     name="orderId"
                     value={formData.orderId}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     placeholder="Optional"
                     className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
                   />
@@ -165,6 +199,7 @@ export default function ContactPage() {
                     required
                     value={formData.message}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     className="w-full rounded-lg border-2 border-[#2e160e] bg-[#ebd5bf] px-3 py-2 outline-none placeholder:font-semibold placeholder:text-[#2e160e]/60"
                   />
                 </div>
@@ -172,9 +207,16 @@ export default function ContactPage() {
                 <div className="mt-8 flex justify-center">
                   <button
                     type="submit"
-                    className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-[#2e160e] bg-[#ef414a] px-6 py-3 font-bold text-white shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#f15e66,inset_0_-3px_0_0_#d12b33] transition-all active:translate-y-1 active:shadow-none">
-                    <SendHorizontal size={20} />
-                    Send message
+                    disabled={isSubmitting}
+                    className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-[#2e160e] bg-[#ef414a] px-6 py-3 font-bold text-white shadow-[0_4px_0_0_#2E160E,inset_0_3px_0_0_#f15e66,inset_0_-3px_0_0_#d12b33] transition-all active:translate-y-1 active:shadow-none disabled:cursor-not-allowed disabled:opacity-70">
+                    {isSubmitting ? (
+                      "Sending..."
+                    ) : (
+                      <>
+                        <SendHorizontal size={20} />
+                        Send message
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
