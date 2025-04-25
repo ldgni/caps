@@ -22,7 +22,13 @@ cd repo-name
 npm install
 ```
 
-4.  Start the development server
+4. Copy [`.env.example`](.env.example) to `.env.local` and update the variables
+
+```sh
+cp .env.example .env.local
+```
+
+5.  Start the development server
 
 ```sh
 npm run dev
