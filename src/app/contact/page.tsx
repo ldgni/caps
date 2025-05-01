@@ -83,13 +83,13 @@ export default function ContactPage() {
           {/* Image Section - Hidden on small screens, shown on left on large screens */}
           <div className="hidden border-[#2e160e] lg:flex lg:w-1/2 lg:border-r-2">
             <div className="flex h-full w-full items-center justify-center p-4">
-              <div className="relative h-5/6 w-5/6 overflow-hidden rounded-lg border-2 border-[#2e160e] shadow-lg">
+              <div className="relative h-5/6 w-5/6 overflow-hidden shadow-lg">
                 <Image
                   src="/images/phone-contact.jpg"
                   alt="A phone"
                   width={1920}
                   height={1080}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full rounded-lg border-2 border-[#2e160e] object-cover"
                   priority
                 />
               </div>
