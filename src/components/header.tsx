@@ -14,8 +14,13 @@ export default function Header() {
       <div className="container mx-auto flex items-center justify-between p-6 sm:p-8">
         <Link
           href="/"
-          className="flex items-center gap-2 text-2xl font-bold transition-opacity hover:opacity-75">
-          Caps
+          className="relative flex items-center gap-2 text-3xl font-bold tracking-tight text-[#2e160e] transition-all hover:scale-105"
+          style={{
+            textShadow: "2px 2px 0px #EBD5BF",
+          }}>
+          <span className="relative after:absolute after:bottom-0 after:left-0 after:h-1 after:w-full after:origin-bottom-right after:scale-x-0 after:transform after:bg-[#ef414a] after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100">
+            Caps
+          </span>
         </Link>
         <nav>
           <ul className="flex items-center gap-4">
