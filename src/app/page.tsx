@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import { FAQ } from "@/components/faq";
 import { Newsletter } from "@/components/newsletter";
 import { ProductCard } from "@/components/product-card";
-import { Spinner } from "@/components/ui/spinner";
 
 export interface Product {
   id: string;
@@ -61,36 +58,17 @@ const products: Product[] = [
 ];
 
 export default function HomePage() {
-  const [productList, setProductList] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading to maintain the same behavior
-    const timer = setTimeout(() => {
-      setProductList(products);
-      setIsLoading(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <main>
       <div className="container mx-auto border-[#2e160e] sm:border-x-2">
         {/* Products Section */}
-        {isLoading ? (
-          <div className="py-16 text-center">
-            <Spinner size="large" className="mx-auto" />
-          </div>
-        ) : (
-          productList.map((product, index) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              reversed={index % 2 !== 0}
-            />
-          ))
-        )}
+        {products.map((product, index) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            reversed={index % 2 !== 0}
+          />
+        ))}
         <Newsletter />
         <FAQ />
       </div>
