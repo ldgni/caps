@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-import { initDb, saveOrder } from "@/lib/db";
+import { initDb, saveOrder } from "@/lib/supabase";
 
 // Order validation schema using Zod
 const orderSchema = z.object({

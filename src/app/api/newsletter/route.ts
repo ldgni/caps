@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-import { addSubscriber, initDb } from "@/lib/db";
+import { addSubscriber, initDb } from "@/lib/supabase";
 
 // Email validation schema using Zod
 const newsletterSchema = z.object({

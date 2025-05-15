@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-import { initDb, saveContactMessage } from "@/lib/db";
+import { initDb, saveContactMessage } from "@/lib/supabase";
 
 // Contact form validation schema using Zod
 const contactSchema = z.object({
